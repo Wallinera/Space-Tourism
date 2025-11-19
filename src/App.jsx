@@ -77,7 +77,10 @@ export default function App() {
   };
 
   return (
-    <main style={mainStyle} className="h-full md:h-screen">
+    <main
+      style={mainStyle}
+      className="min-h-screen max-h-full  xl:h-screen text-white"
+    >
       <Navigation
         activePage={activePage}
         handlePageNavigation={handlePageNavigation}
