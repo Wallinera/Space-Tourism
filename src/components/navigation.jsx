@@ -12,7 +12,7 @@ export default function Navigation({
 
   return (
     <nav>
-      <div className={`section-container ${activePage !== "Home" && "mb-10"}`}>
+      <div className={`section-container ${activePage !== "Home" && "mb-0"}`}>
         {/*Mobile Menu */}
         {menuOpen && (
           <MobileMenu>
