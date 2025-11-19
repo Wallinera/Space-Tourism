@@ -77,7 +77,7 @@ export default function App() {
   };
 
   return (
-    <main style={mainStyle} className="h-full">
+    <main style={mainStyle} className="h-full md:h-screen">
       <Navigation
         activePage={activePage}
         handlePageNavigation={handlePageNavigation}
