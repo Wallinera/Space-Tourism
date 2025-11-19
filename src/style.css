@@ -16,7 +16,7 @@
 
 @layer base {
   body {
-    overflow: hidden;
+    @apply md:overflow-hidden;
   }
   h1 {
     @apply uppercase text-8xl font-bellefair md:text-9xl;
@@ -57,7 +57,7 @@
 /*Section Hero*/
 
 .hero {
-  @apply flex flex-col items-center justify-center gap-25 md:gap-40  lg:flex-row lg:px-0 lg:justify-around;
+  @apply flex flex-col items-center justify-center gap-10 md:gap-40  lg:flex-row lg:px-0 lg:justify-around;
 }
 .hero__header {
   @apply text-center text-secondary space-y-5  lg:text-left;
