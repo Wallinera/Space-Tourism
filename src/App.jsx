@@ -18,7 +18,7 @@ import technologyTablet from "./assets/technology/background-technology-tablet.j
 import technologyMobile from "./assets/technology/background-technology-mobile.jpg";
 
 // Import Components
-import Navigation from "./components/Navigation.jsx";
+import Navigation from "./components/navigation.jsx";
 import Home from "./components/homePage.jsx";
 import Destination from "./components/destinationPage.jsx";
 import Crew from "./components/crewPage.jsx";
