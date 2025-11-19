@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0b0d17;
+  --color-secondary: #d0d6f9;
+
+  --font-barlow: "Barlow Condensed", sans-serif;
+  --font-bellefair: "Bellefair", sans-serif;
+
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1440px;
+  --breakpoint-xxl: 1824px;
+}
+
+@layer base {
+  body {
+    overflow: hidden;
+  }
+  h1 {
+    @apply uppercase text-8xl font-bellefair md:text-9xl;
+  }
+  h2 {
+    @apply uppercase text-6xl font-bellefair md:text-7xl;
+  }
+  h3 {
+    @apply uppercase text-3xl font-bellefair xl:text-5xl;
+  }
+
+  span {
+    @apply font-barlow text-lg text-gray-600 md:text-xl  lg:tracking-[5.5px] lg:font-bold xl:text-2xl;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply container mx-auto p-10 px-6 md:mb-20 md:p-0 md:pl-5 md:max-w-screen  lg:pt-10 lg:mb-60 xl:pl-12;
+  }
+}
+
+/*-----------------------/
+/*Navigation*/
+
+.nav__container {
+  @apply flex items-center justify-between;
+}
+
+.nav__links {
+  @apply relative hidden md:flex items-center justify-between gap-8 bg-gray-900 py-8 px-10 pb-0 lg:px-20 lg:mr-0  lg:bg-gray-800/20 lg:backdrop-blur-lg xl:pr-40 xl:pl-30;
+}
+.nav__link {
+  @apply inline-block text-white  font-barlow tracking-[4px] uppercase text-sm mb-8 cursor-pointer hover:opacity-70 duration-200;
+}
+
+/*-----------------------/
+/*Section Hero*/
+
+.hero {
+  @apply flex flex-col items-center justify-center gap-25 md:gap-40  lg:flex-row lg:px-0 lg:justify-around;
+}
+.hero__header {
+  @apply text-center text-secondary space-y-5  lg:text-left;
+}
+.hero__header--title {
+  @apply uppercase tracking-widest font-barlow font-thin text-xl   lg:tracking-[5.5px];
+}
+.hero__header--text {
+  @apply font-barlow font-thin mx-auto text-xl w-82 md:text-base lg:mx-0 lg:w-100 lg:text-xl;
+}
+.hero__btn {
+  @apply w-[169px] h-[169px] lg:w-[196px] lg:h-[196px] bg-white flex items-center justify-center rounded-full text-primary text-2xl uppercase text-center font-bellefair cursor-pointer hover:bg-primary/80 hover:text-white duration-200 lg:self-end;
+}
+
+/*-----------------------/
+/*Section Destination*/
+
+.destination {
+  @apply space-y-5 md:space-y-10 xl:space-y-20;
+}
+.destination__header {
+  @apply flex items-center justify-center gap-5 md:justify-start  lg:ml-20 xl:ml-30;
+}
+.destination__header--title {
+  @apply uppercase text-lg tracking-widest font-barlow font-thin text-secondary md:text-xl lg:tracking-[5.5px] xl:text-2xl;
+}
+.destination__content {
+  @apply flex flex-col items-center justify-between gap-5 lg:flex-row lg:justify-center lg:gap-20  xl:justify-around xl:gap-0;
+}
+.destination__content--container {
+  @apply flex flex-col items-center justify-center gap-5 lg:items-start;
+}
+.destination__link {
+  @apply inline-block text-secondary  font-barlow tracking-[4px] uppercase text-sm md:text-base mb-2 cursor-pointer hover:opacity-70 duration-200;
+}
+.destination__description {
+  @apply flex flex-col items-center justify-center gap-5 text-white text-center pb-15 border-b-2 border-b-gray-800 lg:items-start;
+}
+.destination__description--text {
+  @apply font-barlow font-thin mx-auto text-[15px] md:max-w-sm md:text-base lg:text-left lg:text-[21px] lg:text-lg;
+}
+.destination__details {
+  @apply flex flex-col gap-10 items-center md:flex-row;
+}
+.destination__distance {
+  @apply flex flex-col items-center justify-center gap-1 uppercase text-white lg:items-start;
+}
+.destination__travel-time {
+  @apply flex flex-col items-center justify-center gap-1 uppercase text-white  lg:items-start;
+}
+
+/*-----------------------/
+/*Section Crew*/
+
+.crew {
+  @apply mb-0 grid grid-cols-1 place-items-center place-content-center gap-10 md:pl-10 lg:pl-0 lg:place-items-start lg:max-w-4xl lg:grid-cols-2 lg:grid-rows-3 xl:max-w-6xl xxl:max-w-full xxl:pl-40;
+}
+.crew__header {
+  @apply flex items-center justify-center gap-5 md:place-self-start;
+}
+.crew__header--title {
+  @apply uppercase text-white text-lg tracking-widest font-barlow font-thin md:text-xl lg:tracking-[5.5px] xl:text-3xl;
+}
+.crew__img-box {
+  @apply w-full border-b border-b-gray-600 md:row-[4/5] md:border-none md:absolute md:bottom-0 lg:left-50 xl:left-80;
+}
+.crew__img {
+  @apply h-auto max-h-75 w-full object-contain md:max-h-120 lg:max-h-150 xl:max-h-175;
+}
+.crew__member {
+  @apply text-center text-secondary space-y-3 h-60 md:h-40 md:mb-5 md:row-start-2 lg:h-60  lg:text-left;
+}
+.crew__member--role {
+  @apply uppercase text-gray-500  text-xl tracking-widest font-barlow font-medium md:text-xl lg:tracking-[5.5px] xl:text-3xl;
+}
+
+.crew__member--bio {
+  @apply font-barlow font-light mx-auto  md:max-w-sm md:text-lg lg:text-left  lg:text-xl xl:mx-0;
+}
+
+/*-----------------------/
+/*Section Technology*/
+
+.technology {
+  @apply px-0 flex flex-col items-center justify-center gap-10 lg:pl-20 xl:pl-40 lg:mr-0;
+}
+.technology__header {
+  @apply flex items-center justify-center gap-5 md:self-start md:ml-10 lg:ml-0;
+}
+.technology__header--title {
+  @apply uppercase text-secondary text-lg tracking-widest font-barlow font-thin md:font-light md:text-xl lg:tracking-[5.5px] xl:text-3xl;
+}
+
+.technology__content--container {
+  @apply flex flex-col gap-10  w-full lg:flex-row  lg:justify-between;
+}
+
+.technology__content--box {
+  @apply flex flex-col items-center justify-center gap-5 lg:flex-row lg:gap-10;
+}
+
+.technology__btns {
+  @apply flex items-center justify-center gap-5 lg:flex-col lg:gap-8;
+}
+
+.technology__btn {
+  @apply w-10 h-10 lg:w-15 lg:h-15 xl:w-16 xl:h-16 bg-none ring ring-gray-600 flex items-center justify-center rounded-full cursor-pointer duration-200 hover:ring-gray-300;
+}
+
+.technology__text-box {
+  @apply px-4 text-center text-secondary space-y-2 h-60 md:h-40 md:mb-5 md:row-start-2 lg:h-60  lg:text-left;
+}
+
+.technology__text-box--title {
+  @apply uppercase tracking-widest font-barlow font-thin md:text-lg lg:tracking-[3px];
+}
+
+.technology__text-box--description {
+  @apply font-barlow text-lg  font-thin mx-auto  md:max-w-sm md:font-light md:text-lg lg:text-left  lg:text-xl xl:mx-0;
+}
