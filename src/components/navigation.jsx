@@ -2,10 +2,11 @@ import logo from "../assets/shared/logo.svg";
 import hamburgerButton from "../assets/shared/icon-hamburger.svg";
 import menuClose from "../assets/shared/icon-close.svg";
 import { useState } from "react";
+import { Link, NavLink } from "react-router";
 
 export default function Navigation({
   activePage,
-  handlePageNavigation,
+  setActivePage,
   isDesktopOrLaptop,
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -22,8 +23,8 @@ export default function Navigation({
                 key={page}
                 pageName={page}
                 setMenuOpen={setMenuOpen}
-                handlePageNavigation={handlePageNavigation}
                 activePage={activePage}
+                setActivePage={setActivePage}
               >
                 {"0" + i + " " + page}
               </MobileMenuLink>
@@ -33,11 +34,11 @@ export default function Navigation({
 
         {/*Navigation Container */}
         <NavContainer>
-          <Logo />
+          <Logo setActivePage={setActivePage} />
           <MobileMenuBtn setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
           <NavigationLinks
             activePage={activePage}
-            handlePageNavigation={handlePageNavigation}
+            setActivePage={setActivePage}
             isDesktopOrLaptop={isDesktopOrLaptop}
           />
         </NavContainer>
@@ -54,31 +55,22 @@ function MobileMenu({ children }) {
   );
 }
 
-function MobileMenuLink({
-  setMenuOpen,
-  handlePageNavigation,
-  activePage,
-  children,
-  pageName,
-}) {
+function MobileMenuLink({ setMenuOpen, activePage, children, pageName }) {
   return (
     <div
       className={`nav__link border-b  ${
         activePage === pageName ? "border-b-white" : "border-b-gray-900/0"
       }`}
     >
-      <a
-        href={pageName}
-        className={`inline-block text-white font-barlow tracking-[4px] uppercase text-lg mb-3 cursor-pointer hover:opacity-70 duration-200 ${
-          activePage === pageName ? "-translate-y-1" : ""
-        }`}
-        onClick={(e) => {
-          handlePageNavigation(e);
+      <NavLink
+        to={pageName.toLowerCase()}
+        className={`mobile__nav-link `}
+        onClick={() => {
           setMenuOpen(false);
         }}
       >
         {children}
-      </a>
+      </NavLink>
     </div>
   );
 }
@@ -87,11 +79,15 @@ function NavContainer({ children }) {
   return <div className="nav__container ">{children}</div>;
 }
 
-function Logo() {
+function Logo({ setActivePage }) {
   return (
-    <div>
-      <img src={logo} alt="logo" className="scale-90 md:scale-75" />
-    </div>
+    <Link to={"/"} onClick={() => setActivePage("Home")}>
+      <img
+        src={logo}
+        alt="logo"
+        className="scale-90 md:scale-75 cursor-pointer"
+      />
+    </Link>
   );
 }
 
@@ -106,11 +102,7 @@ function MobileMenuBtn({ setMenuOpen, menuOpen }) {
   );
 }
 
-function NavigationLinks({
-  activePage,
-  handlePageNavigation,
-  isDesktopOrLaptop,
-}) {
+function NavigationLinks({ activePage, setActivePage, isDesktopOrLaptop }) {
   return (
     <div className="nav__links ">
       {/*Line Between Logo and Nav Links, visible only on large screens/}*/}
@@ -122,26 +114,26 @@ function NavigationLinks({
 
       {/*Nav Link */}
       {["Home", "Destination", "Crew", "Technology"].map((page, i) => (
-        <NavLink
+        <NavigationLink
           key={page}
           pageName={page}
           isDesktopOrLaptop={isDesktopOrLaptop}
-          handlePageNavigation={handlePageNavigation}
+          setActivePage={setActivePage}
           activePage={activePage}
         >
           {"0" + i + " " + page}
-        </NavLink>
+        </NavigationLink>
       ))}
     </div>
   );
 }
 
-function NavLink({
+function NavigationLink({
   children,
   pageName,
   isDesktopOrLaptop,
-  handlePageNavigation,
   activePage,
+  setActivePage,
 }) {
   return (
     <div
@@ -151,15 +143,14 @@ function NavLink({
           : "border-b-gray-900 lg:border-b-gray-800/0"
       }`}
     >
-      <a
-        href={pageName}
-        className={`nav__link  ${
-          activePage === pageName ? "-translate-y-1" : ""
-        }`}
-        onClick={handlePageNavigation}
+      <NavLink
+        className={`nav__link`}
+        id={pageName}
+        to={`${pageName.toLowerCase()}`}
+        onClick={() => setActivePage(pageName)}
       >
         {isDesktopOrLaptop ? children : pageName}
-      </a>
+      </NavLink>
     </div>
   );
 }

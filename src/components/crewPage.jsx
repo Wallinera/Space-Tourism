@@ -92,6 +92,7 @@ function DotsContainer({ activeCrewMember, handleDotClick }) {
     <div className=" flex items-center justify-center gap-5   lg:row-[3/4]">
       {crewData.map((crew) => (
         <Dot
+          key={crew.id}
           id={crew.id}
           activeCrewMember={activeCrewMember}
           handleDotClick={handleDotClick}

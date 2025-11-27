@@ -53,6 +53,14 @@
   @apply inline-block text-white  font-barlow tracking-[4px] uppercase text-sm mb-8 cursor-pointer hover:opacity-70 duration-200;
 }
 
+.mobile__nav-link {
+  @apply inline-block text-white font-barlow tracking-[4px] uppercase text-xs mb-3 cursor-pointer hover:opacity-70 duration-200;
+}
+
+.active {
+  @apply -translate-y-1;
+}
+
 /*-----------------------/
 /*Section Hero*/
 

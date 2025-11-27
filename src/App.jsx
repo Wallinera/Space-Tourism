@@ -1,6 +1,6 @@
 import "./style.css";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 
 // Import background images
@@ -23,9 +23,39 @@ import Home from "./components/homePage.jsx";
 import Destination from "./components/destinationPage.jsx";
 import Crew from "./components/crewPage.jsx";
 import Technology from "./components/technologyPage.jsx";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Navigate,
+  useLocation,
+} from "react-router";
 
 export default function App() {
-  const [activePage, setActivePage] = useState("Home");
+  // Determine background image based on page and screen size
+
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
+  );
+}
+
+function AppContent() {
+  const location = useLocation();
+
+  // derive initial active page from the current path
+  const [activePage, setActivePage] = useState(() => {
+    const p = location.pathname.split("/")[1] || "home";
+    return p.charAt(0).toUpperCase() + p.slice(1);
+  });
+
+  // keep activePage in sync with path changes
+  useEffect(() => {
+    const p = location.pathname.split("/")[1] || "home";
+    setActivePage(p.charAt(0).toUpperCase() + p.slice(1));
+  }, [location.pathname]);
+
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 1024px)",
   });
@@ -33,14 +63,6 @@ export default function App() {
     query: "(min-width: 768px) and (max-width: 1023px)",
   });
 
-  function handlePageNavigation(e) {
-    e.preventDefault();
-    const targetPage = e.target.getAttribute("href");
-    if (targetPage === activePage) return;
-    setActivePage(targetPage);
-  }
-
-  // Determine background image based on page and screen size
   function getBackgroundImage() {
     const imageMap = {
       Home: { desktop: homeDesktop, tablet: homeTablet, mobile: homeMobile },
@@ -79,19 +101,25 @@ export default function App() {
   return (
     <main
       style={mainStyle}
-      className="min-h-screen max-h-full  xl:h-screen text-white"
+      className="min-h-screen max-h-full xl:h-screen text-white"
     >
       <Navigation
         activePage={activePage}
-        handlePageNavigation={handlePageNavigation}
         isDesktopOrLaptop={isDesktopOrLaptop}
+        setActivePage={setActivePage}
       />
-      {activePage === "Home" && <Home />}
-      {activePage === "Destination" && <Destination />}
-      {activePage === "Crew" && <Crew />}
-      {activePage === "Technology" && (
-        <Technology isDesktopOrLaptop={isDesktopOrLaptop} />
-      )}
+
+      <Routes>
+        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route path="home" element={<Home />} />
+        <Route path="destination" element={<Destination />} />
+        <Route path="crew" element={<Crew />} />
+        <Route
+          path="technology"
+          element={<Technology isDesktopOrLaptop={isDesktopOrLaptop} />}
+        />
+        <Route path="*" element={<Navigate to="/home" replace />} />
+      </Routes>
     </main>
   );
 }
