@@ -27,7 +27,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [Add live site URL here](https://space-tourism-alpha-lyart.vercel.app)
+- Live Site URL: [spacetourism.vercel.app](https://space-tourism-alpha-lyart.vercel.app)
 
 ## My process
 
